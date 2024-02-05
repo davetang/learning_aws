@@ -6,6 +6,7 @@
     - [Set up](#set-up)
     - [Configuration](#configuration)
   - [EC2](#ec2)
+    - [Setting up EC2 with the AWS CLI](#setting-up-ec2-with-the-aws-cli)
     - [Find instance type](#find-instance-type)
     - [Find image](#find-image)
     - [Run commands at launch](#run-commands-at-launch)
@@ -236,7 +237,7 @@ to allow for Amazon EC2 access.
 * [Create key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 * [Set up security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
 
-### EC2 with the AWS CLI
+### Setting up EC2 with the AWS CLI
 
 See [Use Amazon EC2 with the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2.html).
 
