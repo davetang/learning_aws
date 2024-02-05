@@ -236,6 +236,59 @@ to allow for Amazon EC2 access.
 * [Create key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 * [Set up security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
 
+### EC2 with the AWS CLI
+
+See [Use Amazon EC2 with the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2.html).
+
+* [Create, display, and delete Amazon EC2 key pairs](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-keypairs.html).
+
+Create.
+
+```console
+aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
+chmod 400 MyKeyPair.pem
+```
+
+Display.
+
+```console
+aws ec2 describe-key-pairs --key-name MyKeyPair
+```
+
+Delete.
+
+```console
+aws ec2 delete-key-pair --key-name MyKeyPair
+```
+
+* [Create, configure, and delete security groups for Amazon EC2](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-sg.html).
+
+Create.
+
+```console
+aws ec2 create-security-group --group-name my-sg --description "My security group" --vpc-id vpc-1a2b3c4d
+aws ec2 describe-security-groups --group-ids sg-903004f8
+```
+
+Get IP.
+
+```console
+curl https://checkip.amazonaws.com
+```
+
+Add rule for SSH.
+
+```console
+aws ec2 authorize-security-group-ingress --group-id sg-903004f8 --protocol tcp --port 22 --cidr x.x.x.x/x
+aws ec2 describe-security-groups --group-ids sg-903004f8
+```
+
+Delete.
+
+```console
+aws ec2 delete-security-group --group-id sg-903004f8
+```
+
 ### Find instance type
 
 [Find an Amazon EC2 instance
