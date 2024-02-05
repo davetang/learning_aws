@@ -6,13 +6,13 @@
     - [Set up](#set-up)
     - [Configuration](#configuration)
   - [EC2](#ec2)
+    - [Find instance type](#find-instance-type)
+    - [Find image](#find-image)
     - [Run commands at launch](#run-commands-at-launch)
     - [EC2 Image Builder](#ec2-image-builder)
   - [Use same IP address](#use-same-ip-address)
   - [Mount EBS](#mount-ebs)
   - [S3 commands](#s3-commands)
-
-Notes on using Amazon Web Services (AWS).
 
 ## Regions
 
@@ -235,6 +235,39 @@ permissions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-fo
 to allow for Amazon EC2 access.
 * [Create key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 * [Set up security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
+
+### Find instance type
+
+[Find an Amazon EC2 instance
+type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-discovery.html)
+using AWS CLI and
+[describe-instance-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html).
+
+```console
+aws ec2 describe-instance-types \
+  --output text \
+  --filters "Name=current-generation,Values=true" "Name=memory-info.size-in-mib,Values=65536" --query "InstanceTypes[*].[InstanceType]" | sort | head
+```
+```
+c5a.8xlarge
+c6a.8xlarge
+c6g.8xlarge
+c6gd.8xlarge
+c6gn.8xlarge
+c6i.8xlarge
+c6id.8xlarge
+c6in.8xlarge
+c7g.8xlarge
+c7gd.8xlarge
+```
+
+Display details for the specified instance type.
+
+```console
+aws ec2 describe-instance-types --instance-types c5a.8xlarge
+```
+
+### Find image
 
 `aws` can be used to find an appropriate image ID; see [Find an AMI using the
 AWS
